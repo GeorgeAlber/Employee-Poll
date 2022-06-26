@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { logoutAuthedUser } from "../redux/actions/authedUser";
 
-const Nav = ({ authedUser }) => {
+const Nav = ({ dispatch, authedUser }) => {
   return (
     <div>
       <nav className="nav">
@@ -18,11 +19,19 @@ const Nav = ({ authedUser }) => {
         </ul>
         <ul className="__user-info">
           <li>
-            {authedUser?.img && <img src={authedUser.img} className="avatar" />}
+            {authedUser?.img && (
+              <img
+                src={authedUser.img}
+                className="avatar"
+                alt={authedUser.id}
+              />
+            )}
           </li>
           {authedUser?.id && <li>{authedUser.id}</li>}
           <li>
-            <Link to="">Logout</Link>
+            <Link to="" onClick={() => dispatch(logoutAuthedUser())}>
+              Logout
+            </Link>
           </li>
         </ul>
       </nav>

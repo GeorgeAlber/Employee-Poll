@@ -6,7 +6,7 @@ import { receiveUsers } from "../../redux/actions/users";
 const Leaderboard = (props) => {
   useEffect(() => {
     props.dispatch(receiveUsers());
-  }, []);
+  });
 
   return (
     <div>
@@ -40,7 +40,6 @@ const Leaderboard = (props) => {
 };
 
 const mapStateToProps = ({ authedUser, users, polls }) => {
-  console.log(users);
   let user = Object.values(users).map((user) => formatLeader(polls, user));
   return {
     authedUser: authedUser,

@@ -9,11 +9,12 @@ import NewPoll from "../components/poll/NewPoll";
 import PollPage from "./poll/PollPage";
 import Login from "./login/Login";
 import LoadingBar from "react-redux-loading-bar";
+import ErrorPage from "./ErrorPage";
 
 const App = (props) => {
   useEffect(() => {
     props.dispatch(handleInitialData());
-  }, []);
+  });
 
   return (
     <Fragment>
@@ -30,6 +31,7 @@ const App = (props) => {
               <Route path="/login" exact element={<Login />} />
               <Route path="/questions/:id" element={<PollPage />} />
               <Route path="/add" element={<NewPoll />} />
+              <Route path="*" element={<ErrorPage />} />
             </Routes>
           </div>
         )}

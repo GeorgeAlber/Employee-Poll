@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-// import Tweet from "./Tweet";
 import PollCard from "./PollCard";
 
 const Dashboard = (props) => {
@@ -34,8 +33,8 @@ const mapStateToProps = ({ polls, authedUser }) => {
   let unansweredPolls = [];
 
   Object.values(polls).map((poll) => {
-    poll.optionOne.votes.includes(authedUser.id) ||
-    poll.optionTwo.votes.includes(authedUser.id)
+    return poll.optionOne.votes.includes(authedUser.id) ||
+      poll.optionTwo.votes.includes(authedUser.id)
       ? answeredPolls.push(poll.id)
       : unansweredPolls.push(poll.id);
   });

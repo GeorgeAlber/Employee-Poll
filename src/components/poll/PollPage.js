@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import Poll from "./Poll";
-// import NewTweet from "./NewPoll";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const withRouter = (Component) => {
