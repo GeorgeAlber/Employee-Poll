@@ -6,8 +6,7 @@ import { receiveUsers } from "../../redux/actions/users";
 const Leaderboard = (props) => {
   useEffect(() => {
     props.dispatch(receiveUsers());
-  });
-
+  }, []);
   return (
     <div>
       <table className="__leader-container">

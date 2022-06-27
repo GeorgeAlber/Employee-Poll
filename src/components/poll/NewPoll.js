@@ -37,21 +37,26 @@ const NewPoll = ({ dispatch, id }) => {
       <h3 className="center">Would you Rather</h3>
       <h5 className="center">Create Your Own Poll</h5>
       <form className="new-tweet" onSubmit={handleSubmit}>
-        {/* TODO: Redirect to / if submitted */}
-        <label className="center">First option</label>
+        <label className="center" htmlFor="option-one-input">
+          First option
+        </label>
         <input
           value={val1}
           className="__option-input"
           placeholder="Option One"
           type="text"
+          name="option-one-input"
           onChange={handleChangeVal1}
         />
-        <label className="center">Second option</label>
+        <label className="center" htmlFor="option-two-input">
+          Second option
+        </label>
         <input
           value={val2}
           className="__option-input"
           placeholder="Option Two"
           type="text"
+          name="option-two-input"
           onChange={handleChangeVal2}
         />
         <button

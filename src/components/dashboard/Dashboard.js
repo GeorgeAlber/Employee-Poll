@@ -32,7 +32,11 @@ const mapStateToProps = ({ polls, authedUser }) => {
   let answeredPolls = [];
   let unansweredPolls = [];
 
-  Object.values(polls).map((poll) => {
+  let sortedPolls = Object.values(polls).sort(
+    (a, b) => b.timestamp - a.timestamp
+  );
+
+  sortedPolls.map((poll) => {
     return poll.optionOne.votes.includes(authedUser.id) ||
       poll.optionTwo.votes.includes(authedUser.id)
       ? answeredPolls.push(poll.id)

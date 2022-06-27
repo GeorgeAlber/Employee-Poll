@@ -28,6 +28,8 @@ export function formatPoll(poll, author, authedUser) {
     hasAnswered:
       poll.optionOne.votes.includes(authedUser) ||
       poll.optionTwo.votes.includes(authedUser),
+    answerOptionOne: poll.optionOne.votes.includes(authedUser),
+    answerOptionTwo: poll.optionTwo.votes.includes(authedUser),
   };
 }
 

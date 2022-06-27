@@ -292,3 +292,7 @@ button:disabled,button:disabled:hover{
   cursor: auto;
   color: #fff;
 } 
+
+button:disabled.answered_btn, button:disabled:hover.answered_btn {
+  background-color: green !important;
+}

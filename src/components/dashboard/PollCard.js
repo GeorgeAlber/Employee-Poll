@@ -1,21 +1,13 @@
 import { connect } from "react-redux";
 import { formatPoll, formatDate } from "../../utils/helpers";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const PollCard = (props) => {
-  const navigate = useNavigate();
-
-  const toParent = (e, id) => {
-    e.preventDefault();
-
-    navigate(`/questions/${id}`);
-  };
-
   if (props.poll === null) {
     return <p>This tweet doesn't exist</p>;
   }
 
-  const { name, timestamp, id, parent } = props.poll;
+  const { name, timestamp, id } = props.poll;
 
   return (
     <div className="tweet">

@@ -1,24 +1,21 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { formatPoll, formatDate } from "../../utils/helpers";
-import { useNavigate, Link } from "react-router-dom";
+import { formatPoll } from "../../utils/helpers";
 import { handleAnswerPoll } from "../../redux/actions/polls";
+import { useNavigate } from "react-router-dom";
+import ErrorPage from "../ErrorPage";
 
 const Poll = (props) => {
-  const [selected, setSelected] = useState();
   const navigate = useNavigate();
-
+  const [selected, setSelected] = useState();
   const handleSubmit = (e) => {
     e.preventDefault();
     const { dispatch, poll } = props;
 
     dispatch(handleAnswerPoll(selected, poll.id));
-
-    navigate("/");
   };
-
   if (props.poll === null) {
-    return <p>This tweet doesn't exist</p>;
+    return <ErrorPage />;
   }
 
   const {
@@ -31,8 +28,8 @@ const Poll = (props) => {
     optionOnePercentage,
     optionTwoPercentage,
     hasAnswered,
-    numberOfVotes,
-    parent,
+    answerOptionOne,
+    answerOptionTwo,
   } = props.poll;
 
   return (
@@ -57,7 +54,10 @@ const Poll = (props) => {
                 )}
                 <p>{optionOne.text}</p>
                 <button
-                  className="btn __btn-option"
+                  name="option-1-btn"
+                  className={`${
+                    answerOptionOne && "answered_btn"
+                  } btn __btn-option`}
                   onClick={() => setSelected("optionOne")}
                   disabled={hasAnswered}
                 >
@@ -77,7 +77,10 @@ const Poll = (props) => {
                 )}
                 <p>{optionTwo.text}</p>
                 <button
-                  className="btn __btn-option"
+                  name="option-2-btn"
+                  className={`${
+                    answerOptionTwo && "answered_btn"
+                  } btn __btn-option`}
                   onClick={() => setSelected("optionTwo")}
                   disabled={hasAnswered}
                 >
@@ -96,9 +99,17 @@ const mapStateToProps = ({ authedUser, users, polls }, { id }) => {
   const poll = polls[id];
   //   const parentTweet = tweet ? polls[tweet.replyingTo] : null;
 
-  return {
-    authedUser,
-    poll: formatPoll(poll, users[poll.author], authedUser.id),
-  };
+  if (poll === undefined) {
+    return {
+      authedUser,
+      poll: null,
+      error: true,
+    };
+  } else {
+    return {
+      authedUser,
+      poll: formatPoll(poll, users[poll.author], authedUser.id),
+    };
+  }
 };
 export default connect(mapStateToProps)(Poll);

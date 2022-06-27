@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { handleSetAuthedUser } from "../../redux/actions/authedUser";
-import authedUser from "../../redux/reducers/authedUser";
-import { useNavigate, Link } from "react-router-dom";
 
-const Login = ({ dispatch, users, authedUser }) => {
-  const navigate = useNavigate();
-
+const Login = ({ dispatch, users }) => {
   const [selected, setSelected] = useState("");
 
   const handleSubmit = (e) => {
@@ -25,12 +21,15 @@ const Login = ({ dispatch, users, authedUser }) => {
     <div className="center __login-container">
       <h3>Employee Polls</h3>
       <h4>Log In</h4>
+
       <form className="new-tweet" onSubmit={handleSubmit}>
-        <label>Username</label>
+        <label htmlFor="uname">Username</label>
         <select
           select={users[0]}
           className="__login-select"
           onChange={handleChange}
+          data-testid="username-select"
+          name="uname"
         >
           {users.map((user) => (
             <option value={user.id} key={user.id}>
@@ -38,12 +37,13 @@ const Login = ({ dispatch, users, authedUser }) => {
             </option>
           ))}
         </select>
-        <label>Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
-          value="asdasdsad"
           className="__login-select"
           disabled
+          data-testid="password-input"
+          name="password"
         />
         <button className="btn __login-btn" type="submit">
           Login

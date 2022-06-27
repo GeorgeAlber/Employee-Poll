@@ -7,13 +7,13 @@ const Nav = ({ dispatch, authedUser }) => {
     <div>
       <nav className="nav">
         <ul>
-          <li>
+          <li data-testid="navLink-1">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li data-testid="navLink-2">
             <Link to="leaderboard">Leaderboard</Link>
           </li>
-          <li>
+          <li data-testid="navLink-3">
             <Link to="add">New</Link>
           </li>
         </ul>
@@ -28,7 +28,7 @@ const Nav = ({ dispatch, authedUser }) => {
             )}
           </li>
           {authedUser?.id && <li>{authedUser.id}</li>}
-          <li>
+          <li data-testid="navLink-4">
             <Link to="" onClick={() => dispatch(logoutAuthedUser())}>
               Logout
             </Link>

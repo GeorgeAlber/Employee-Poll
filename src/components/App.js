@@ -14,7 +14,7 @@ import ErrorPage from "./ErrorPage";
 const App = (props) => {
   useEffect(() => {
     props.dispatch(handleInitialData());
-  });
+  }, []);
 
   return (
     <Fragment>

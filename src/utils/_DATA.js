@@ -199,7 +199,7 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
         },
       };
 
-      res();
-    }, 500);
+      res(true);
+    }, 1000);
   });
 }
